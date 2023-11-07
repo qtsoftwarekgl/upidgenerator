@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  app:
+    image: upidgenerator:local
+    ports:
+      - "8085:3002"
+    restart: always
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    command: redis-server --requirepass "lTAjwZNv"
+    restart: always
+    volumes:
+      - ./redis-volume:/data
+    ports:
+      - "7373:6379"
